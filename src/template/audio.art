@@ -1,0 +1,10 @@
+<audio
+  class="y-audio"
+  {{ if src }} src="{{ src }}" {{ /if }}
+  {{ if preload }} preload="{{ preload }}" {{ /if }}
+  {{ if muted }} muted {{ /if }}
+  {{ if loop }} loop {{ /if }}
+  {{ if autoplay }} autoplay {{ /if }}
+  {{ if !controls }} controls {{ /if }}
+>
+</audio>

@@ -1,0 +1,52 @@
+{
+  "name": "yaudio",
+  "version": "0.0.1-alpha",
+  "description": "A cross-browser javascript library for the html5 audio tag",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode=development --config config/dev.env.js --watch --colors",
+    "lint": "eslint src --ext .ts",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kabulore/YAudio.git"
+  },
+  "keywords": [
+    "audio",
+    "mp3"
+  ],
+  "author": "https://yinmu.me",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kabulore/YAudio/issues"
+  },
+  "homepage": "https://github.com/kabulore/YAudio#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
+    "art-template": "^4.13.2",
+    "art-template-loader": "^1.4.3",
+    "autoprefixer": "^9.7.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.2.0",
+    "cssnano": "^4.1.10",
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
+    "node-sass": "^4.13.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "svg-inline-loader": "^0.8.0",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
+  }
+}

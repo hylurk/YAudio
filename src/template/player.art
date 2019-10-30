@@ -1,0 +1,51 @@
+<div class="y-wrapper">
+  <section class="y-audio-wrapper">
+    {{ include './audio.art' options }}
+  </section>
+  {{ if options.controls }}
+  <section class="y-controls">
+    <div class="y-controls-middle">
+      <div class="y-time-current">
+        <span>00:00</span>
+      </div>
+      <div class="y-controls-progress">
+        <div class="y-bar-time"></div>
+        <div class="y-bar">
+          <div class="y-bar-mark"></div>
+          <div class="y-bar-loaded"></div>
+          <div class="y-bar-played">
+            <span class="y-thumb"></span>
+          </div>
+        </div>
+      </div>
+      <div class="y-time-duration">
+        <span>00:00</span>
+      </div>
+    </div>
+    <div class="y-controls-left">
+      <button class="y-play-btn">
+        <div class="y-play-icon"> {{@ icons.play }}</div>
+      </button>
+    </div>
+    <div class="y-controls-right">
+      <div class="y-volume">
+        <div class="y-volume-box">
+          <button class="y-volume-btn">
+            <div class="y-volume-icon">
+              {{@ icons.volumeOff }}
+            </div>
+          </button> 
+        </div>
+        <div class="y-volume-progress">
+          <div class="y-volume-bar">
+            <div class="y-volume-bar-mark"></div>
+            <div class="y-volume-bar-size">
+              <span class="y-volume-thumb"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ /if }}
+</div>
