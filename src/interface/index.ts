@@ -7,5 +7,7 @@ export interface IConfig {
   muted?: boolean,
   loop?: boolean,
   preload?: string,
-  controls?: boolean
+  controls?: boolean,
+  currentSrcIndex?: number,
+  srcList?: string[]
 }

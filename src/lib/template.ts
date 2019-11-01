@@ -16,6 +16,10 @@ class Template {
   public playHoverTime: HTMLDivElement
   public playLoaded: HTMLDivElement
   public playPlayed: HTMLDivElement
+  public volumeBar: HTMLDivElement
+  public volumeSize: HTMLDivElement
+  public mutedBtn: HTMLDivElement
+  public mutedIcon: HTMLDivElement
 
   constructor (options: Interface.IConfig) {
     this.container = document.querySelector(options.container)
@@ -38,6 +42,10 @@ class Template {
     this.playHoverTime = this.container.querySelector('.y-bar-time')
     this.playLoaded = this.container.querySelector('.y-bar-loaded')
     this.playPlayed = this.container.querySelector('.y-bar-played')
+    this.volumeBar = this.container.querySelector('.y-volume-bar')
+    this.volumeSize = this.container.querySelector('.y-volume-bar-size')
+    this.mutedBtn = this.container.querySelector('.y-volume-btn')
+    this.mutedIcon = this.container.querySelector('.y-volume-icon')
   }
 }
 

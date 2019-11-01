@@ -32,15 +32,15 @@
         <div class="y-volume-box">
           <button class="y-volume-btn">
             <div class="y-volume-icon">
-              {{@ icons.volumeOff }}
+              {{@ icons.volumeOn }}
             </div>
-          </button> 
-        </div>
-        <div class="y-volume-progress">
-          <div class="y-volume-bar">
-            <div class="y-volume-bar-mark"></div>
-            <div class="y-volume-bar-size">
-              <span class="y-volume-thumb"></span>
+          </button>
+          <div class="y-volume-progress">
+            <div class="y-volume-bar">
+              <div class="y-volume-bar-mark"></div>
+              <div class="y-volume-bar-size">
+                <span class="y-volume-thumb"></span>
+              </div>
             </div>
           </div>
         </div>

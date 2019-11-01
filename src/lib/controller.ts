@@ -10,7 +10,10 @@ class Controller {
     this.listenPlayToggle()
     this.listenDuration()
     this.listenCurrentTime()
+    this.listenProgress()
     this.listenBar()
+    this.listenVolumeBar()
+    this.listenMutedToggle()
   }
 
   listenPlayToggle () {
@@ -28,6 +31,16 @@ class Controller {
       this.player.currentTimeUpdate()
     })
   }
+  listenProgress () {
+    this.player.audio.addEventListener('progress', () => {
+      this.player.progressChange()
+    })
+  }
+  listenEnded () {
+    this.player.audio.addEventListener('ended', () => {
+      this.player.ended()
+    })
+  }
   listenBar () {
     const thumbMove = (e: any) => {
       // 计算点下的位置
@@ -37,7 +50,6 @@ class Controller {
     }
 
     const thumbUp = (e: any) => {
-      // 移除监听事件
       document.removeEventListener('mouseup', thumbUp)
       document.removeEventListener('mousemove', thumbMove)
       // 计算点下的位置
@@ -46,11 +58,7 @@ class Controller {
       this.player.seek(this.player.bar.get('played') * this.player.audio.duration)
     }
 
-    this.player.template.playProgress.addEventListener('mouseup', () => {
-      //
-    })
     this.player.template.playProgress.addEventListener('mousedown', () => {
-      // 开始监听
       document.addEventListener('mouseup', thumbUp)
       document.addEventListener('mousemove', thumbMove)
     })
@@ -67,6 +75,36 @@ class Controller {
         this.player.template.playHoverTime.innerText = Tool.secondToTime(time);
         this.player.template.playHoverTime.classList.remove('hidden');
       }
+    })
+  }
+  listenVolumeBar () {
+    const volumeThumbMove = (e: any) => {
+      // 计算点下的位置
+      const px = Tool.cumulativeOffset(this.player.template.volumeBar).top;
+      const tx = e.clientY - px;
+      if (tx < 0 || tx > this.player.template.volumeBar.offsetHeight) {
+          return;
+      }
+      const percentage = 1 - tx / this.player.template.volumeBar.offsetHeight;
+      this.player.bar.set('volumeSize', percentage, 'height')
+      this.player.audio.volume = percentage
+    }
+
+    const volumeThumbUp = (e: any) => {
+      document.removeEventListener('mouseup', volumeThumbUp)
+      document.removeEventListener('mousemove', volumeThumbMove)
+      // 计算点下的位置
+      volumeThumbMove(e)
+    }
+
+    this.player.template.volumeBar.addEventListener('mousedown', () => {
+      document.addEventListener('mouseup', volumeThumbUp)
+      document.addEventListener('mousemove', volumeThumbMove)
+    })
+  }
+  listenMutedToggle () {
+    this.player.template.mutedBtn.addEventListener('click', () => {
+      this.player.mutedToggle()
     })
   }
 }

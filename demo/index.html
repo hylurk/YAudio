@@ -8,6 +8,8 @@
 </head>
 <body>
   <div id="wrapper" style="padding-top: 100px;"></div>
+
+  <button onclick="aaa()">获取当前播放器时间</button>
 </body>
 <script>
     var yyy = new YAudio({
@@ -16,5 +18,12 @@
       controls: true,
       autoplay: false
     })
+    yyy.custom.handle('play', () => {
+      console.log('fuck')
+    })
+    function aaa () {
+      var a = yyy.custom.handle('getCurrentTime')
+      console.log(a)
+    }
   </script>
 </html>
