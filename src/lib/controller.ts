@@ -3,17 +3,25 @@ import Tool from '../tools/index'
 class Controller {
 
   public player: any
+  private dragStart: string
+  private dragMove: string
+  private dragEnd: string
 
   constructor (player: any) {
     this.player = player
+    this.dragStart = this.player.options.env === 'mobile' ? 'touchstart' : 'mousedown'
+    this.dragMove = this.player.options.env === 'mobile' ? 'touchmove' : 'mousemove'
+    this.dragEnd = this.player.options.env === 'mobile' ? 'touchend' : 'mouseup'
     // 绑定监听事件
     this.listenPlayToggle()
     this.listenDuration()
     this.listenCurrentTime()
     this.listenProgress()
     this.listenBar()
-    this.listenVolumeBar()
-    this.listenMutedToggle()
+    if (this.player.options.env !== 'mobile') {
+      this.listenVolumeBar()
+      this.listenMutedToggle()
+    }
   }
 
   listenPlayToggle () {
@@ -50,19 +58,19 @@ class Controller {
     }
 
     const thumbUp = (e: any) => {
-      document.removeEventListener('mouseup', thumbUp)
-      document.removeEventListener('mousemove', thumbMove)
+      document.removeEventListener(this.dragEnd, thumbUp)
+      document.removeEventListener(this.dragMove, thumbMove)
       // 计算点下的位置
       let percentage = ((e.clientX || e.changedTouches[0].clientX) - Tool.getBoundingClientRectViewLeft(this.player.template.playProgress)) / this.player.template.playProgress.clientWidth
       this.player.bar.set('played', percentage, 'width')
       this.player.seek(this.player.bar.get('played') * this.player.audio.duration)
     }
 
-    this.player.template.playProgress.addEventListener('mousedown', () => {
-      document.addEventListener('mouseup', thumbUp)
-      document.addEventListener('mousemove', thumbMove)
+    this.player.template.playProgress.addEventListener(this.dragStart, () => {
+      document.addEventListener(this.dragEnd, thumbUp)
+      document.addEventListener(this.dragMove, thumbMove)
     })
-    this.player.template.playProgress.addEventListener('mousemove', (e: any) => {
+    this.player.template.playProgress.addEventListener(this.dragMove, (e: any) => {
       // 实时计算位置，并让 thumb 和 played 跟随
       if (this.player.audio.duration) {
         const px = Tool.cumulativeOffset(this.player.template.playProgress).left;

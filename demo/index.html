@@ -18,11 +18,13 @@
       controls: true,
       autoplay: false
     })
-    yyy.custom.handle('play', () => {
+    // yyy.custom.handle('play', () => {
+    yyy.on('play', () => {
       console.log('fuck')
     })
     function aaa () {
-      var a = yyy.custom.handle('getCurrentTime')
+      // var a = yyy.custom.handle('getCurrentTime')
+      var a = yyy.on('getCurrentTime')
       console.log(a)
     }
   </script>

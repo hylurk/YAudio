@@ -290,3 +290,46 @@
     background-color: #fff;
   }
 }
+
+// mobile model
+.y-controls {
+  &.mobile {
+    height: 80px;
+    .y-controls-middle {
+      padding: 0 10px;
+      .y-controls-progress {
+        .y-bar-time {
+          display: none;
+        }
+        .y-bar {
+          .y-bar-mark,
+          .y-bar-loaded,
+          .y-bar-played {
+            bottom: -1px;
+            height: 5px;
+            border-radius: 5px;
+          }
+          .y-bar-time {
+            opacity: 1;
+          }
+          .y-thumb {
+            top: -2px;
+            right: -4px;
+            height: 9px;
+            width: 9px;
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .y-controls-left {
+      position: static;
+      margin: -20px auto 0;
+      .y-play-btn .y-play-icon {
+        width: 22px;
+        height: 26px;
+      }
+    }
+  }
+}

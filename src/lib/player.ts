@@ -17,11 +17,12 @@ class YAudio {
   public controller: any
   public muted: boolean
   public custom: any
+  public on: any
   // custom event
   public playCallback: Function
   public pausedCallback: Function
-  public durationChangeCallBack: Function
-  public endedCallBack: Function
+  public durationChangeCallback: Function
+  public endedCallback: Function
   public playEventCallback: Function
   public timeUpdateCallback: Function
 
@@ -40,12 +41,14 @@ class YAudio {
       this.controller = new Controller(this)
     }
     // 用户事件
+    // this.custom = new Custom(this)
     this.custom = new Custom(this)
+    this.on = this.custom.handle
     // 初始化用户 callback 函数
     this.playCallback = () => {}
     this.pausedCallback = () => {}
-    this.durationChangeCallBack = () => {}
-    this.endedCallBack = () => {}
+    this.durationChangeCallback = () => {}
+    this.endedCallback = () => {}
     this.playEventCallback = () => {}
     this.timeUpdateCallback = () => {}
   }
@@ -72,7 +75,7 @@ class YAudio {
     // if (this.video.duration !== 1 && this.video.duration !== Infinity) {
     //   this.template.playDuration.innerHTML = Tool.secondToTime(this.video.duration)
     // }
-    this.durationChangeCallBack()
+    this.durationChangeCallback()
   }
   currentTimeUpdate () {
     this.template.playCurrentTime.innerHTML = Tool.secondToTime(this.audio.currentTime)
@@ -100,7 +103,7 @@ class YAudio {
         this.audio.src = this.options.srcList[this.options.currentSrcIndex]
       }
     }
-    this.endedCallBack()
+    this.endedCallback()
   }
   mutedToggle () {
     if (this.muted) {

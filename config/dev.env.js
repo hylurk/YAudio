@@ -84,7 +84,7 @@ module.exports = {
     compress: true,
     open: true,
     quiet: false,
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 8088
   },
   // 这里用到两个插件，所以首先我们要记着安装

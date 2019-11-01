@@ -3,7 +3,7 @@
     {{ include './audio.art' options }}
   </section>
   {{ if options.controls }}
-  <section class="y-controls">
+  <section class="y-controls {{ if options.env === 'mobile'}}mobile{{ /if }}">
     <div class="y-controls-middle">
       <div class="y-time-current">
         <span>00:00</span>
@@ -27,6 +27,7 @@
         <div class="y-play-icon"> {{@ icons.play }}</div>
       </button>
     </div>
+    {{ if options.env !== 'mobile'}}
     <div class="y-controls-right">
       <div class="y-volume">
         <div class="y-volume-box">
@@ -46,6 +47,7 @@
         </div>
       </div>
     </div>
+    {{ /if }}
   </section>
   {{ /if }}
 </div>
